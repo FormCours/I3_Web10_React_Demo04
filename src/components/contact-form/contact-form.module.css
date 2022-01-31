@@ -1,0 +1,14 @@
+.myForm label:first-child {
+    font-weight: bold;
+    color: rgb(81, 161, 0);
+}
+
+.myForm label:first-child::after {
+    content: ':';
+    margin-left: 1ch;
+    margin-right: 1ch;
+}
+
+.myForm textarea {
+    resize: none;
+}
