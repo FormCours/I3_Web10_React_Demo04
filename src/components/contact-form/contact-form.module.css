@@ -12,3 +12,8 @@
 .myForm textarea {
     resize: none;
 }
+
+.myForm .doubleChoice {
+    color: saddlebrown;
+    margin-left: 10px;
+}

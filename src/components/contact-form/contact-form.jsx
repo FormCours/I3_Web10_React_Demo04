@@ -10,7 +10,7 @@ const ContactForm = (props) => {
     const [message, setMessage] = useState('');
     const [cacahuete, setCacahuete] = useState('yes');
     const [cacahueteSweet, setCacahueteSweet] = useState(false);
-    const [cacahueteSalty, setCacahueteSalty ] = useState(false);
+    const [cacahueteSalty, setCacahueteSalty] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,13 +24,13 @@ const ContactForm = (props) => {
             cacahuete,
             cacahueteSweet,
             cacahueteSalty
-        }
+        };
 
         console.log(data);
         // Cas Réel: Traitement des données, envois d'une requete AJAX 
 
         handleResetForm();
-    }
+    };
 
     const handleResetForm = () => {
         setFirstname('');
@@ -41,6 +41,11 @@ const ContactForm = (props) => {
         setCacahuete('yes');
         setCacahueteSweet(false);
         setCacahueteSalty(false);
+    };
+
+    const handleDoubleChoice = () => {
+        setCacahueteSweet(true);
+        setCacahueteSalty(true);
     }
 
     return (<>
@@ -48,8 +53,8 @@ const ContactForm = (props) => {
         <form className={style.myForm} onSubmit={handleSubmit}>
             <div>
                 <label htmlFor='firstname'>Prenom</label>
-                <input type='text' id='firstname' 
-                    onChange={(e) => setFirstname(e.target.value)} value={firstname}/>
+                <input type='text' id='firstname'
+                    onChange={(e) => setFirstname(e.target.value)} value={firstname} />
             </div>
 
             <div>
@@ -57,11 +62,11 @@ const ContactForm = (props) => {
                 <input type='text' id='lastname'
                     onChange={(e) => setLastname(e.target.value)} value={lastname} />
             </div>
-            
+
             <div>
                 <label htmlFor='email'>Email</label>
                 <input type='email' id='email'
-                    onChange={(e) => setEmail(e.target.value)} value={email}  />
+                    onChange={(e) => setEmail(e.target.value)} value={email} />
             </div>
 
             <div>
@@ -90,36 +95,42 @@ const ContactForm = (props) => {
 
                 <input type='radio' name='cacahuetes' id='cacahuetes_value1' value='yes'
                     onChange={(e) => setCacahuete(e.target.value)}
-                    checked={cacahuete === 'yes'}/>
+                    checked={cacahuete === 'yes'} />
                 <label htmlFor='cacahuetes_value1'>Oui</label>
 
                 <input type='radio' name='cacahuetes' id='cacahuetes_value2' value='no'
                     onChange={(e) => setCacahuete(e.target.value)}
-                    checked={cacahuete === 'no'}/>
+                    checked={cacahuete === 'no'} />
                 <label htmlFor='cacahuetes_value2'>Non</label>
 
                 <input type='radio' name='cacahuetes' id='cacahuetes_value3' value='n/a'
                     onChange={(e) => setCacahuete(e.target.value)}
-                    checked={cacahuete === 'n/a'}/>
+                    checked={cacahuete === 'n/a'} />
                 <label htmlFor='cacahuetes_value3'>N/A</label>
             </div>
 
+            {cacahuete === 'yes' && (
+                <div>
+                    <label htmlFor='cacahuetes_choice'>Quel type de cacahuetes ?</label>
+
+                    <input type='checkbox' id='cacahuetes_choice1'
+                        onChange={(e) => setCacahueteSweet(e.target.checked)}
+                        checked={cacahueteSweet} />
+                    <label htmlFor='cacahuetes_choice1'>Sucré</label>
+
+                    <input type='checkbox' id='cacahuetes_choice2'
+                        onChange={(e) => setCacahueteSalty(e.target.checked)}
+                        checked={cacahueteSalty} />
+                    <label htmlFor='cacahuetes_choice2'>Salé</label>
+
+                    {(!cacahueteSweet || !cacahueteSalty) && (
+                        <label className={style.doubleChoice} onClick={handleDoubleChoice}> → Les deux</label>
+                    )}
+                </div>
+            )}
+
             <div>
-                <label htmlFor='cacahuetes_choice'>Quel type de cacahuetes ?</label>
-
-                <input type='checkbox' id='cacahuetes_choice1'
-                    onChange={(e) => setCacahueteSweet(e.target.checked)} 
-                    checked={cacahueteSweet}/>
-                <label htmlFor='cacahuetes_choice1'>Sucré</label>
-
-                <input type='checkbox' id='cacahuetes_choice2' 
-                    onChange={(e) => setCacahueteSalty(e.target.checked)}
-                    checked={cacahueteSalty} />
-                <label htmlFor='cacahuetes_choice2'>Salé</label>
-            </div>
-
-            <div>
-                <input type='submit' value='Envoyer'/>
+                <input type='submit' value='Envoyer' />
             </div>
         </form>
     </>);
