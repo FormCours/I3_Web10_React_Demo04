@@ -124,7 +124,7 @@ const ContactForm = (props) => {
                     <label htmlFor='cacahuetes_choice2'>Salé</label>
 
                     {(!cacahueteSweet || !cacahueteSalty) && (
-                        <label className={style.doubleChoice} onClick={handleDoubleChoice}> → Les deux</label>
+                        <label className={style.doubleChoice} onClick={handleDoubleChoice}>Les deux</label>
                     )}
                 </div>
             )}

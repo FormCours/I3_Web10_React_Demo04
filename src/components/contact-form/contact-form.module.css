@@ -17,3 +17,11 @@
     color: saddlebrown;
     margin-left: 10px;
 }
+
+.myForm .doubleChoice::before {
+    content: "→ ";
+}
+
+.myForm .doubleChoice::after {
+    content: " ←";
+}
